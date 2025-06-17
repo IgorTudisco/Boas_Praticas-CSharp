@@ -2,8 +2,6 @@
 using System.Net.Http.Json;
 using Alura.Adopet.Console;
 
-// cria instância de HttpClient para consumir API Adopet
-HttpClient client = ConfiguraHttpClient("http://localhost:5057");
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
@@ -11,6 +9,7 @@ try
     switch (comando)
     {
         case "import":
+
             var import = new Import();
             await import.ImportacaoDeArquivoPetAsyc(caminhoDoArquivoDeImportacao: args[1]);
             break;
@@ -20,30 +19,14 @@ try
             Help.ShowHelp(argsHelp: args[1]);            
             break;
         case "show":
-            
-            string caminhoDoArquivoAserExibido = args[1];
-            using (StreamReader sr = new StreamReader(caminhoDoArquivoAserExibido))
-            {
-                Console.WriteLine("----- Serão importados os dados abaixo -----");
-                while (!sr.EndOfStream)
-                {
-                    // separa linha usando ponto e vírgula
-                    string[] propriedades = sr.ReadLine().Split(';');
-                    // cria objeto Pet a partir da separação
-                    Pet pet = new Pet(Guid.Parse(propriedades[0]),
-                    propriedades[1],
-                    TipoPet.Cachorro
-                    );
-                    Console.WriteLine(pet);
-                }
-            }
+
+            var show = new Show();
+            show.ShowArquivoImportado(caminhoDoArquivoAserExibido: args[1]);            
             break;
         case "list":
-            var pets = await ListPetsAsync();
-            foreach(var pet in pets)
-            {
-                Console.WriteLine(pet);
-            }
+
+            var list = new List();
+            await list.ListDePets();            
             break;
         default:
             // exibe mensagem de comando inválido
@@ -62,22 +45,7 @@ finally
     Console.ForegroundColor = ConsoleColor.White;
 }
 
-HttpClient ConfiguraHttpClient(string url)
-{
-    HttpClient _client = new HttpClient();
-    _client.DefaultRequestHeaders.Accept.Clear();
-    _client.DefaultRequestHeaders.Accept.Add(
-        new MediaTypeWithQualityHeaderValue("application/json"));
-    _client.BaseAddress = new Uri(url);
-    return _client;
-}
 
-
-async Task<IEnumerable<Pet>?> ListPetsAsync()
-{
-    HttpResponseMessage response = await client.GetAsync("pet/list");
-    return await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
-}
 
 /*
  * Documentação de convenções de nomenclatura do .NET:
