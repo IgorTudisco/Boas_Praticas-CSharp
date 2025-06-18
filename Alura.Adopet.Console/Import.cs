@@ -19,25 +19,12 @@ internal class Import
 
     public async Task ImportacaoDeArquivoPetAsyc(string caminhoDoArquivoDeImportacao)
     {
-        List<Pet> listaDePet = new List<Pet>();
-        using (StreamReader sr = new StreamReader(caminhoDoArquivoDeImportacao))
-        {
-            while (!sr.EndOfStream)
-            {
-                // separa linha usando ponto e vírgula
-                string[] propriedades = sr.ReadLine().Split(';');
-                // cria objeto Pet a partir da separação
-                Pet pet = new Pet(Guid.Parse(propriedades[0]),
-                  propriedades[1],
-                  TipoPet.Cachorro
-                 );
+        var leitorDeArquivo = new LeitorDeArquivo();
+        List<Pet> listaDePet = leitorDeArquivo.RealizaLeitura(caminhoDoArquivoDeImportacao);
 
-                System.Console.WriteLine(pet);
-                listaDePet.Add(pet);
-            }
-        }
         foreach (var pet in listaDePet)
         {
+            System.Console.WriteLine($"ID: {pet.Id}, Nome: {pet.Nome}, Tipo: {pet.Tipo}");
             try
             {
                 var resposta = await CreatePetAsync(pet);
