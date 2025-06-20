@@ -12,9 +12,8 @@ try
             await import.ImportacaoDeArquivoPetAsyc(caminhoDoArquivoDeImportacao: args[1]);
             break;
         case "help":
-
             var help = new Help();
-            Help.ShowHelp(argsHelp: args[1]);            
+            help.ShowHelp(argsHelp: args);
             break;
         case "show":
 
