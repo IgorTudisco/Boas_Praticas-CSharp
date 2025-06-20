@@ -24,3 +24,8 @@ internal class LeitorDeArquivo
         return listaDePets;
     }
 }
+
+/*
+ * Documentação de diretrizes para coleções:
+ * https://learn.microsoft.com/pt-br/dotnet/standard/design-guidelines/guidelines-for-collections
+ */
