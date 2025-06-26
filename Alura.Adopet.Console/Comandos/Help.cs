@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Alura.Adopet.Console;
+namespace Alura.Adopet.Console.Comandos;
 
 [DocComando(instrucao: "Help", documentacao: "adopet help comando que exibe informações de ajuda.")]
 internal class Help

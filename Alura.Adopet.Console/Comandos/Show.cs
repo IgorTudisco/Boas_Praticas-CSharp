@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using Alura.Adopet.Console.Util;
+using System.Threading.Tasks;
 
-namespace Alura.Adopet.Console;
+namespace Alura.Adopet.Console.Comandos;
 
 [DocComando(instrucao: "Show", documentacao: "adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado.")]
 internal class Show
