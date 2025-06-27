@@ -10,21 +10,21 @@ try
         case "import":
 
             var import = new Import();
-            await import.ImportacaoDeArquivoPetAsyc(caminhoDoArquivoDeImportacao: args[1]);
+            await import.ExecutaAsync(args);
             break;
         case "help":
             var help = new Help();
-            help.ShowHelp(argsHelp: args);
+            await help.ExecutaAsync(args);
             break;
         case "show":
 
             var show = new Show();
-            show.ShowArquivoImportado(caminhoDoArquivoAserExibido: args[1]);            
+            await show.ExecutaAsync(args);            
             break;
         case "list":
 
             var list = new List();
-            await list.ListDePets();            
+            await list.ExecutaAsync(args);            
             break;
         default:
             // exibe mensagem de comando inválido

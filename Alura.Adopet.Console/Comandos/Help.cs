@@ -3,7 +3,7 @@
 namespace Alura.Adopet.Console.Comandos;
 
 [DocComando(instrucao: "Help", documentacao: "adopet help comando que exibe informações de ajuda.")]
-internal class Help
+internal class Help: IComando
 {
     private readonly Dictionary<string, DocComando> Docs;
 
@@ -15,7 +15,13 @@ internal class Help
             .ToDictionary(d => d.Instrucao);
     }
 
-    public void ShowHelp(string[] argsHelp)
+    public Task ExecutaAsync(string[] args)
+    {
+        this.ShowHelp(argsHelp: args);
+        return Task.CompletedTask;
+    }
+
+    private void ShowHelp(string[] argsHelp)
     {
         System.Console.WriteLine("Lista de comandos.");
         // se não passou mais nenhum argumento mostra help de todos os comandos

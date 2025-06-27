@@ -5,7 +5,7 @@ using System.Net.Http.Json;
 namespace Alura.Adopet.Console.Comandos;
 
 [DocComando(instrucao: "List", documentacao: "adopet list comando que exibe no terminal o conteúdo cadastrado na base de dados da AdoPet.")]
-internal class List
+internal class List: IComando
 {
     HttpClient client;
 
@@ -14,10 +14,10 @@ internal class List
         client = ConfiguraHttpClient("http://localhost:5057");
     }
 
-    public async Task ListDePets()
+    private async Task ListDePets()
     {
         var pets = await ListPetsAsync();
-        foreach (var pet in pets)
+        foreach (var pet in pets!)
         {
             System.Console.WriteLine(pet);
         }
@@ -37,5 +37,10 @@ internal class List
             new MediaTypeWithQualityHeaderValue("application/json"));
         _client.BaseAddress = new Uri(url);
         return _client;
+    }
+
+    public async Task ExecutaAsync(string[] args)
+    {
+        await this.ListDePets();
     }
 }
