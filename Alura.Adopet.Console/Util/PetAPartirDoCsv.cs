@@ -2,16 +2,16 @@
 
 namespace Alura.Adopet.Console.Util;
 
-public class PetAPartirDoCsv
+public static class PetAPartirDoCsv
 {
-    public Pet ConverteDoTexto(string linha)
+    public static Pet ConverteDoTexto(this string linha)
     {
 
         string[] propriedades = linha.Split(';');
 
         Pet pet = new Pet(Guid.Parse(propriedades[0]),
         propriedades[1],
-        TipoPet.Cachorro
+        int.Parse(propriedades[2]) == 1 ? TipoPet.Gato : TipoPet.Cachorro
         );
 
         return pet;

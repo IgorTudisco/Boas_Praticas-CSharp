@@ -9,11 +9,9 @@ public class PetAPartirDoCsvTest
     {
         // Arrange
         string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
-        var conversor = new PetAPartirDoCsv();
-
 
         // Act
-        var pet = conversor.ConverteDoTexto(linha);
+        var pet = linha.ConverteDoTexto();
 
         // Assert
         Assert.NotNull(pet);
