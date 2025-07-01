@@ -9,7 +9,7 @@ public class PetAPartirDoCsvTest
     public void QuandoStringForValidaDeveRetornarUmPet()
     {
         // Arrange
-        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
+        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;0";
 
         // Act
         var pet = linha.ConverteDoTexto();
@@ -22,7 +22,7 @@ public class PetAPartirDoCsvTest
     public void QuandoStringNaoForNulaEVaziaDeveRetornarUmPet()
     {
         // Arrange
-        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
+        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;0";
 
         // Act
         var pet = linha.ConverteDoTexto();
@@ -38,7 +38,7 @@ public class PetAPartirDoCsvTest
     public void VerificaSeOsCamposSaoValidos()
     {
         // Arrange
-        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
+        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;0";
 
         // Act
         var pet = linha.ConverteDoTexto();
@@ -56,7 +56,7 @@ public class PetAPartirDoCsvTest
     public void VerificaSeOGuidValido()
     {
         // Arrange
-        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
+        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;0";
 
         // Act
         var pet = linha.ConverteDoTexto();
@@ -70,7 +70,7 @@ public class PetAPartirDoCsvTest
     public void VerificaSeOTipoValido()
     {
         // Arrange
-        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
+        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;0";
 
         // Act
         var pet = linha.ConverteDoTexto();
@@ -114,7 +114,16 @@ public class PetAPartirDoCsvTest
     public void QuandoGuidInvalidoDeveLancarArgumentException()
     {
         // Arrange
-        string linha = "jadsjfajklj554;Lima Limão;1";
+        string linha = "jadsjfajklj554;Lima Limão;0";
+        // Act e Assert
+        Assert.Throws<ArgumentException>(() => linha.ConverteDoTexto());
+    }
+
+    [Fact]
+    public void QuandoTipoInvalidoDeveLancarArgumentException()
+    {
+        // Arrange
+        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;3";
         // Act e Assert
         Assert.Throws<ArgumentException>(() => linha.ConverteDoTexto());
     }
