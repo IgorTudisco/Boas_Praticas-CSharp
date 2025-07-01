@@ -7,7 +7,11 @@ public static class PetAPartirDoCsv
     public static Pet ConverteDoTexto(this string? linha)
     {
 
-        string[] propriedades = linha?.Split(';') ?? throw new ArgumentNullException(nameof(linha), "Linha não pode ser nula"); ;
+        string[] propriedades = linha?.Split(';') ?? throw new ArgumentNullException(nameof(linha), "Linha não pode ser nula");
+
+        if(string.IsNullOrEmpty(linha)) throw new ArgumentException("Linha não pode ser vazia", nameof(linha));
+
+
 
         Pet pet = new Pet(Guid.Parse(propriedades[0]),
         propriedades[1],

@@ -19,13 +19,19 @@ public class PetAPartirDoCsvTest
     }
 
     [Fact]
-    public void QuandoStringNulaDevelancarArgumentNullException()
+    public void QuandoStringNaoForNulaEVaziaDeveRetornarUmPet()
     {
         // Arrange
-        string? linha = null;
+        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
 
-        // Act e Assert
-        Assert.Throws<ArgumentNullException>(() => linha!.ConverteDoTexto());
+        // Act
+        var pet = linha.ConverteDoTexto();
+
+        // Assert
+        Assert.NotNull(pet);
+        Assert.NotEmpty(pet.Nome!);
+        Assert.NotEmpty(pet.Id.ToString());
+        Assert.NotEmpty(pet.Tipo.ToString());
     }
 
     [Fact]
@@ -73,6 +79,35 @@ public class PetAPartirDoCsvTest
         Assert.Equal(TipoPet.Gato, pet.Tipo);
         Assert.Equal("Gato", pet.Tipo.ToString());
 
+    }
+
+    [Fact]
+    public void QuandoStringNulaDevelancarArgumentNullException()
+    {
+        // Arrange
+        string? linha = null;
+
+        // Act e Assert
+        Assert.Throws<ArgumentNullException>(() => linha!.ConverteDoTexto());
+    }
+
+    [Fact]
+    public void QuandoAStringForVaziaLancarAgumentException()
+    {
+        // Arrange
+        string linha = string.Empty;
+
+        // Act e Assert
+        Assert.Throws<ArgumentException>(() => linha.ConverteDoTexto());
+    }
+
+    [Fact]
+    public void QuandoCamposInsufucientesDeveLancarArgumentException()
+    {
+        // Arrange
+        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão";
+        // Act e Assert
+        Assert.Throws<ArgumentException>(() => linha.ConverteDoTexto());
     }
 
 
