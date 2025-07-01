@@ -17,3 +17,17 @@ public class PetAPartirDoCsvTest
         Assert.NotNull(pet);
     }
 }
+
+
+/*
+ * Bibliotecas que empregam testes automatizados:
+ * 
+ * EF Core - https://github.com/dotnet/efcore
+ * 
+ * Dapper - https://github.com/DapperLib/Dapper
+ * 
+ * Humanizer - https://github.com/Humanizr/Humanizer
+ * 
+ * AutoMapper - https://github.com/AutoMapper/AutoMapper/
+ * 
+ */
