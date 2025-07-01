@@ -19,19 +19,13 @@ public class PetAPartirDoCsvTest
     }
 
     [Fact]
-    public void QuandoStringNaoForNulaEVaziaDeveRetornarUmPet()
+    public void QuandoStringNulaDevelancarArgumentNullException()
     {
         // Arrange
-        string linha = "456b24f4-19e2-4423-845d-4a80e8854a41;Lima Limão;1";
+        string? linha = null;
 
-        // Act
-        var pet = linha.ConverteDoTexto();
-
-        // Assert
-        Assert.NotNull(pet);
-        Assert.NotEmpty(pet.Nome!);
-        Assert.NotEmpty(pet.Id.ToString());
-        Assert.NotEmpty(pet.Tipo.ToString());
+        // Act e Assert
+        Assert.Throws<ArgumentNullException>(() => linha!.ConverteDoTexto());
     }
 
     [Fact]
