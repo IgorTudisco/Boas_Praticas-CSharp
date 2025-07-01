@@ -110,6 +110,15 @@ public class PetAPartirDoCsvTest
         Assert.Throws<ArgumentException>(() => linha.ConverteDoTexto());
     }
 
+    [Fact]
+    public void QuandoGuidInvalidoDeveLancarArgumentException()
+    {
+        // Arrange
+        string linha = "jadsjfajklj554;Lima Limão;1";
+        // Act e Assert
+        Assert.Throws<ArgumentException>(() => linha.ConverteDoTexto());
+    }
+
 
 }
 
