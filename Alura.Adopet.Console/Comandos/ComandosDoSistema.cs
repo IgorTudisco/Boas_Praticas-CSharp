@@ -4,7 +4,7 @@ namespace Alura.Adopet.Console.Comandos;
 
 internal class ComandosDoSistema
 {
-    private readonly HttpClientPet _httpClientPet = new HttpClientPet();
+    private readonly HttpClientPet _httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().GetHttpClient());
     private readonly Dictionary<string, IComando> comandosDoSistema;
 
     public ComandosDoSistema()
@@ -33,4 +33,5 @@ internal class ComandosDoSistema
  * Doc - https://learn.microsoft.com/pt-br/dotnet/fundamentals/networking/http/httpclient-guidelines
  * 
  * Uso recomendado - https://learn.microsoft.com/pt-br/dotnet/fundamentals/networking/http/httpclient-guidelines#recommended-use
+ * 
  */
