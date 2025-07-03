@@ -27,11 +27,5 @@ internal class ComandosDoSistema
  * ADO.NET - https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/commands-and-parameters
  * 
  * MediatR - https://github.com/jbogard/MediatR
- * 
- * Orientações da documentação da Microsoft para trabalhar com esse tipo de HttpClient:
- * 
- * Doc - https://learn.microsoft.com/pt-br/dotnet/fundamentals/networking/http/httpclient-guidelines
- * 
- * Uso recomendado - https://learn.microsoft.com/pt-br/dotnet/fundamentals/networking/http/httpclient-guidelines#recommended-use
- * 
+ *  
  */
