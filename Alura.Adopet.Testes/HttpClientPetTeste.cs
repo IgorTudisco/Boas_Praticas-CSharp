@@ -2,7 +2,7 @@ using Alura.Adopet.Console.Servicos;
 using Moq;
 using Moq.Protected;
 using System.Net;
-using System.Threading.Tasks;
+using System.Net.Sockets;
 
 namespace Alura.Adopet.Testes;
 
@@ -66,7 +66,7 @@ public class HttpClientPetTeste
               ItExpr.IsAny<CancellationToken>())
            .ReturnsAsync(response);
 
-        var httpClient = new Mock<HttpClient>(MockBehavior.Default);
+        var httpClient = new Mock<HttpClient>(MockBehavior.Default, handlerMock.Object);
         httpClient.Object.BaseAddress = new Uri("http://localhost:5057");
         var clientePet = new HttpClientPet(httpClient.Object);
 
@@ -83,10 +83,22 @@ public class HttpClientPetTeste
     public async Task QuandoApiForaDeveRetornarUmaExecao()
     {
         // Arrange
-        //var clientePet = new HttpClientPet(uri: "http://localhost:1111");
+        var handlerMock = new Mock<HttpMessageHandler>();
+        
+        handlerMock
+           .Protected()
+           .Setup<Task<HttpResponseMessage>>(
+              "SendAsync",
+              ItExpr.IsAny<HttpRequestMessage>(),
+              ItExpr.IsAny<CancellationToken>())
+           .ThrowsAsync(new SocketException());
 
-        //// Act + Assert
-        //await Assert.ThrowsAnyAsync<Exception>(() => clientePet.ListPetsAsync());
+        var httpClient = new Mock<HttpClient>(MockBehavior.Default, handlerMock.Object);
+        httpClient.Object.BaseAddress = new Uri("http://localhost:5057");
+        var clientePet = new HttpClientPet(httpClient.Object);
+
+        // Act + Assert
+        await Assert.ThrowsAnyAsync<Exception>(() => clientePet.ListPetsAsync());
 
     }
 }
