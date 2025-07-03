@@ -8,12 +8,16 @@ namespace Alura.Adopet.Console.Comandos;
 [DocComando(instrucao: "List", documentacao: "adopet list comando que exibe no terminal o conteúdo cadastrado na base de dados da AdoPet.")]
 internal class List: IComando
 {
+    private readonly HttpClientPet _httpClientPet;
+    public List(HttpClientPet httpClientPet)
+    {
+        _httpClientPet = httpClientPet;
+    }
     private async Task ListaDadosPetsDaAPIAsync()
     {
-        var httpListPet = new HttpClientPet();
-        IEnumerable<Pet>? pets = await httpListPet.ListPetsAsync();
+        IEnumerable<Pet>? pets = await _httpClientPet.ListPetsAsync();
         System.Console.WriteLine("----- Lista de Pets importados no sistema -----");
-        foreach (var pet in pets)
+        foreach (var pet in pets!)
         {
             System.Console.WriteLine(pet);
         }
