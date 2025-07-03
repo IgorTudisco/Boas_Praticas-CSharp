@@ -106,4 +106,6 @@ public class HttpClientPetTeste
 
 /*
  * Documentação do Moq - https://documentation.help/Moq/
+ * 
+ * Wiki repositorio Moq - https://github.com/devlooped/moq/wiki/Quickstart
  */
