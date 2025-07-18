@@ -6,13 +6,16 @@ namespace Alura.Adopet.Console.Comandos;
 
 [DocComando(instrucao: "import",
         documentacao: "adopet import <ARQUIVO> comando que realiza a importação do arquivo de pets.")]
-internal class Import : IComando
+public class Import : IComando
 {
 
     private readonly HttpClientPet _httpClientPet;
-    public Import(HttpClientPet httpClientPet)
+    private readonly LeitorDeArquivo _leitorDeArquivo;
+
+    public Import(HttpClientPet httpClientPet, LeitorDeArquivo leitorDeArquivo)
     {
         _httpClientPet = httpClientPet;
+        _leitorDeArquivo = leitorDeArquivo;
     }
 
     public async Task ExecutaAsync(string[] args)
@@ -22,8 +25,7 @@ internal class Import : IComando
 
     private async Task ImportacaoDeArquivoPetAsyc(string caminhoDoArquivoDeImportacao)
     {
-        var leitor = new LeitorDeArquivo();
-        List<Pet> listaDePet = leitor.RealizaLeitura(caminhoDoArquivoDeImportacao);
+        List<Pet> listaDePet = _leitorDeArquivo.RealizaLeitura(caminhoDoArquivoDeImportacao)!;
         foreach (var pet in listaDePet)
         {
             System.Console.WriteLine(pet);

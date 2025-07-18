@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 
 namespace Alura.Adopet.Console.Servicos;
 
-internal class AdopetAPIClientFactory : IHttpClientFactory
+public class AdopetAPIClientFactory : IHttpClientFactory
 {
     private string url = "http://localhost:5057";
 

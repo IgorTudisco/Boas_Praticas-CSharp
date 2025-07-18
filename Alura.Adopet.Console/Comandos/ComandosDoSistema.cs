@@ -1,4 +1,5 @@
 ﻿using Alura.Adopet.Console.Servicos;
+using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Console.Comandos;
 
@@ -6,13 +7,14 @@ internal class ComandosDoSistema
 {
     private readonly HttpClientPet _httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().GetHttpClient());
     private readonly Dictionary<string, IComando> comandosDoSistema;
+    private readonly LeitorDeArquivo _leitorDeArquivo = new LeitorDeArquivo();
 
     public ComandosDoSistema()
     {
         comandosDoSistema = new Dictionary<string, IComando>
         {
             {"help", new Help() },
-            {"import", new Import(_httpClientPet) },
+            {"import", new Import(_httpClientPet, _leitorDeArquivo) },
             {"list", new List(_httpClientPet) },
             {"show", new Show() },
         };

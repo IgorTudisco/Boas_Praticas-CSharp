@@ -1,13 +1,19 @@
 ﻿using Alura.Adopet.Console.Modelos;
+using System.Runtime.CompilerServices;
 
 namespace Alura.Adopet.Console.Util;
 
-internal class LeitorDeArquivo
+public class LeitorDeArquivo
 {
-    public List<Pet> RealizaLeitura(string caminhoDoArquivoASerLido)
+    public virtual List<Pet> RealizaLeitura(string? caminhoDoArquivoASerLido)
     {
+        if(caminhoDoArquivoASerLido is null)
+        {
+            throw new ArgumentNullException(nameof(caminhoDoArquivoASerLido), "O caminho do arquivo não pode ser nulo.");
+        }
+
         List<Pet> listaDePets = new List<Pet>();
-        using (StreamReader sr = new StreamReader(caminhoDoArquivoASerLido))
+        using (StreamReader sr = new StreamReader(caminhoDoArquivoASerLido!))
         {
             System.Console.WriteLine("----- Serão importados os dados abaixo -----");
             while (!sr.EndOfStream)
