@@ -30,4 +30,23 @@ public class ImportTest
         httpClientPet.Verify(x => x.CreatePetAsync(It.IsAny<Pet>()), Times.Never);
 
     }
+
+    // Teste com falha
+    [Fact]
+    public async Task QuandoArquivoNaoExistenteDeveGerarException()
+    {
+        //Arrange
+        List<Pet> listaDePet = new();
+        var leitor = LeitorDeArquivosMockBuilder.CriaMock(listaDePet);
+        leitor.Setup(_ => _.RealizaLeitura()).Throws<FileNotFoundException>();
+
+        var httpClientPet = HttpClientPetMockBuilder.GetMock();
+
+        string[] args = { "import", "lista.csv" };
+
+        var import = new Import(httpClientPet.Object, leitor.Object);
+
+        //Act+Assert
+        await Assert.ThrowsAnyAsync<Exception>(() => import.ExecutaAsync(args));
+    }
 }
