@@ -15,7 +15,7 @@ internal class Show: IComando
     private void ShowArquivoImportado(string caminhoDoArquivoAserExibido)
     {
         LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo();
-        var listaDePets = leitorDeArquivo.RealizaLeitura(caminhoDoArquivoAserExibido);
+        var listaDePets = leitorDeArquivo.RealizaLeitura();
         foreach (var pet in listaDePets)
         {
             System.Console.WriteLine($"ID: {pet.Id}, Nome: {pet.Nome}, Tipo: {pet.Tipo}");

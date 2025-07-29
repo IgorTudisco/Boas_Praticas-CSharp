@@ -17,7 +17,7 @@ public class ImportIntegrationTest
         var pet = new Pet(new Guid("456b24f4-19e2-4423-845d-4a80e8854a41"), "Lima", TipoPet.Cachorro);
         listaDePets.Add(pet);
 
-        leitorDeArquivo.Setup(x => x.RealizaLeitura("")).Returns(listaDePets);
+        leitorDeArquivo.Setup(x => x.RealizaLeitura()).Returns(listaDePets);
 
         var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().GetHttpClient());
         var import = new Import(httpClientPet, leitorDeArquivo.Object);

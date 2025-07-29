@@ -25,7 +25,7 @@ public class Import : IComando
 
     private async Task ImportacaoDeArquivoPetAsyc(string caminhoDoArquivoDeImportacao)
     {
-        List<Pet> listaDePet = _leitorDeArquivo.RealizaLeitura(caminhoDoArquivoDeImportacao)!;
+        List<Pet> listaDePet = _leitorDeArquivo.RealizaLeitura();
         foreach (var pet in listaDePet)
         {
             System.Console.WriteLine(pet);

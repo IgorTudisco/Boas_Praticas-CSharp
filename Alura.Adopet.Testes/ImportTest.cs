@@ -18,7 +18,7 @@ public class ImportTest
         var leitorDeArquivo = new Mock<LeitorDeArquivo>(MockBehavior.Default, It.IsAny<string>());
         var listaDePets = new List<Pet>();        
 
-        leitorDeArquivo.Setup(x => x.RealizaLeitura("")).Returns(listaDePets);
+        leitorDeArquivo.Setup(x => x.RealizaLeitura()).Returns(listaDePets);
 
         var httpClientPet = new Mock<HttpClientPet>(MockBehavior.Default, It.IsAny<HttpClient>());
 
