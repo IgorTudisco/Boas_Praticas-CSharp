@@ -7,6 +7,7 @@ internal class ComandosDoSistema
 {
     private readonly HttpClientPet _httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().GetHttpClient());
     private readonly Dictionary<string, IComando> comandosDoSistema;
+    // private readonly LeitorDeArquivo _leitorDeArquivo = new LeitorDeArquivo(caminhoDoAquivoASerLido: args[1]); Erro, pois o args[1] não está disponível aqui
     private readonly LeitorDeArquivo _leitorDeArquivo = new LeitorDeArquivo();
 
     public ComandosDoSistema()

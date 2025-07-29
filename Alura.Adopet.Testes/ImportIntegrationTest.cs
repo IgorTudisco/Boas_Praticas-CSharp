@@ -1,15 +1,14 @@
-﻿
-using Alura.Adopet.Console.Comandos;
+﻿using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
 using Alura.Adopet.Console.Util;
 using Moq;
-using System.Threading.Tasks;
 
 namespace Alura.Adopet.Testes;
 
-public class ImportTeste
+public class ImportIntegrationTest
 {
+    // Teste com falha
     [Fact]
     public async Task QuandoApiEstaNoArDeveRetornarListaDePet()
     {
