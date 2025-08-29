@@ -79,3 +79,13 @@ public static class ConsoleUI
         System.Console.WriteLine($"Aconteceu um exceção: {erros!.Message}");
     }
 }
+
+
+/*
+ * 
+ * Para saber ainda mais sobre Pattern Matching recomendamos a leitura dos links abaixo:
+ * 
+ *  Documentação MS Visão geral dos padrões correspondentes https://learn.microsoft.com/pt-br/dotnet/csharp/fundamentals/functional/pattern-matching
+ *  Novidades do C# 7: Pattern Matching https://www.lambda3.com.br/2016/08/novidades-do-c-7-pattern-matching/
+ *  
+ */
