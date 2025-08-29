@@ -30,11 +30,7 @@ namespace Alura.Adopet.Console.Comandos
         private void ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)
         {
             var listaDepets = leitor.RealizaLeitura();
-            foreach (var pet in listaDepets!)
-            {
-                System.Console.WriteLine(pet);
-            }
-
+            Result.Ok().WithSuccess(new SuccessWhithPets(listaDepets!, "Importação realizada com sucesso!"));
         }
     }
 }

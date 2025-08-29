@@ -19,8 +19,7 @@ public class LeitorDeArquivo
 
         List<Pet> listaDePets = new List<Pet>();
         using (StreamReader sr = new StreamReader(_caminhoDoArquivo))
-        {
-            System.Console.WriteLine("----- Serão importados os dados abaixo -----");
+        {            
             while (!sr.EndOfStream)
             {
                 var linha = sr.ReadLine()!;

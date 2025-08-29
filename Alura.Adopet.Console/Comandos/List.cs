@@ -1,5 +1,6 @@
 ﻿using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
+using Alura.Adopet.Console.Util;
 using FluentResults;
 
 namespace Alura.Adopet.Console.Comandos;
@@ -17,13 +18,7 @@ internal class List: IComando
         try
         {
             IEnumerable<Pet>? pets = await _httpClientPet.ListPetsAsync();
-            System.Console.WriteLine("----- Lista de Pets importados no sistema -----");
-            foreach (var pet in pets!)
-            {
-                System.Console.WriteLine(pet);
-            }
-
-            return Result.Ok();
+            return Result.Ok().WithSuccess(new SuccessWhithPets(pets!, "Importação realizada com sucesso!"));
         }
         catch (Exception exception)
         {

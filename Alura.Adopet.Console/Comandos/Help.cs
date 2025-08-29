@@ -1,6 +1,5 @@
 ﻿using Alura.Adopet.Console.Util;
 using FluentResults;
-using System;
 using System.Reflection;
 
 namespace Alura.Adopet.Console.Comandos;
@@ -19,8 +18,8 @@ public class Help: IComando
     {
         try
         {
-            this.ShowHelp(argsHelp: args);
-            return Task.FromResult(Result.Ok());
+            var success = this.GeneratesHelp(argsHelp: args);
+            return Task.FromResult(Result.Ok().WithSuccess(new SuccessWhithDocs(success)));
         }
         catch (Exception exception)
         {
@@ -28,21 +27,16 @@ public class Help: IComando
         }        
     }
 
-    private void ShowHelp(string[] argsHelp)
+    private IEnumerable<string> GeneratesHelp(string[] argsHelp)
     {
+        List<string> resultado = new();
         System.Console.WriteLine("Lista de comandos.");
         // se não passou mais nenhum argumento mostra help de todos os comandos
         if (argsHelp!.Length == 1)
-        {
-            System.Console.WriteLine("adopet help <parametro> ous simplemente adopet help  " +
-                 "comando que exibe informações de ajuda dos comandos.");
-            System.Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
-            System.Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
-            System.Console.WriteLine("Comando possíveis: ");
-
+        {            
             foreach (var doc in Docs.Values)
             {
-                System.Console.WriteLine(doc.Documentacao);
+                resultado.Add(doc.Documentacao);
             }
         }
         // exibe o help daquele comando específico
@@ -53,9 +47,15 @@ public class Help: IComando
             if (!Docs.ContainsKey(comandoASerExibido))
             {
                 var comando = Docs[comandoASerExibido];
-            System.Console.WriteLine(comando.Documentacao);
+                resultado.Add(comando.Documentacao);
+            }
+            else
+            {
+                resultado.Add($"Comando {comandoASerExibido} não encontrado!");
             }
 
         }
+
+        return resultado;
     }
 }

@@ -39,9 +39,8 @@ public class Import : IComando
                 System.Console.WriteLine(ex.Message);
             }
         }
-        System.Console.WriteLine("Importação concluída!");
 
-        return Result.Ok().WithSuccess(new SuccessWhithPets(listaDePet));
+        return Result.Ok().WithSuccess(new SuccessWhithPets(listaDePet, "Importação realizada com sucesso!"));
     }
 }
 
