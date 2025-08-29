@@ -16,8 +16,15 @@ namespace Alura.Adopet.Console.Comandos
 
         public Task<Result> ExecutaAsync(string[] args)
         {
-            this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]);
-            return Task.FromResult(Result.Ok());
+            try
+            { 
+                this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]);
+                return Task.FromResult(Result.Ok());
+            }
+            catch (Exception exception)
+            {
+                return Task.FromResult(Result.Fail(new Error("mensagem de falha!").CausedBy(exception)));
+            }
         }
 
         private void ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)

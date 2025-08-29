@@ -1,5 +1,6 @@
 ﻿using Alura.Adopet.Console.Util;
 using FluentResults;
+using System;
 using System.Reflection;
 
 namespace Alura.Adopet.Console.Comandos;
@@ -16,8 +17,15 @@ public class Help: IComando
 
     public Task<Result> ExecutaAsync(string[] args)
     {
-        this.ShowHelp(argsHelp: args);
-        return Task.FromResult(Result.Ok());
+        try
+        {
+            this.ShowHelp(argsHelp: args);
+            return Task.FromResult(Result.Ok());
+        }
+        catch (Exception exception)
+        {
+            return Task.FromResult(Result.Fail(new Error("Exibição da documentação falhou!").CausedBy(exception)));
+        }        
     }
 
     private void ShowHelp(string[] argsHelp)
