@@ -1,4 +1,5 @@
 ﻿using Alura.Adopet.Console.Util;
+using FluentResults;
 
 namespace Alura.Adopet.Console.Comandos
 {
@@ -13,10 +14,10 @@ namespace Alura.Adopet.Console.Comandos
             this.leitor = leitor;
         }
 
-        public Task ExecutaAsync(string[] args)
+        public Task<Result> ExecutaAsync(string[] args)
         {
             this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]);
-            return Task.CompletedTask;
+            return Task.FromResult(Result.Ok());
         }
 
         private void ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)

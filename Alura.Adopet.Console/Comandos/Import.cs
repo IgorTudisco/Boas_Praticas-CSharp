@@ -1,6 +1,7 @@
 ﻿using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
 using Alura.Adopet.Console.Util;
+using FluentResults;
 
 namespace Alura.Adopet.Console.Comandos;
 
@@ -18,12 +19,12 @@ public class Import : IComando
         _leitorDeArquivo = leitorDeArquivo;
     }
 
-    public async Task ExecutaAsync(string[] args)
+    public async Task<Result> ExecutaAsync(string[] args)
     {
-        await this.ImportacaoDeArquivoPetAsyc(caminhoDoArquivoDeImportacao: args[1]);
+        return await this.ImportacaoDeArquivoPetAsyc(caminhoDoArquivoDeImportacao: args[1]);
     }
 
-    private async Task ImportacaoDeArquivoPetAsyc(string caminhoDoArquivoDeImportacao)
+    private async Task<Result> ImportacaoDeArquivoPetAsyc(string caminhoDoArquivoDeImportacao)
     {
         List<Pet> listaDePet = _leitorDeArquivo.RealizaLeitura()!;
         foreach (var pet in listaDePet)
@@ -39,6 +40,8 @@ public class Import : IComando
             }
         }
         System.Console.WriteLine("Importação concluída!");
+
+        return Result.Ok();
     }
 }
 

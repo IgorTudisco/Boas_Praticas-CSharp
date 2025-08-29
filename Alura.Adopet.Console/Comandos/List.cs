@@ -1,7 +1,6 @@
 ﻿using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Servicos;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
+using FluentResults;
 
 namespace Alura.Adopet.Console.Comandos;
 
@@ -13,7 +12,7 @@ internal class List: IComando
     {
         _httpClientPet = httpClientPet;
     }
-    private async Task ListaDadosPetsDaAPIAsync()
+    private async Task<Result> ListaDadosPetsDaAPIAsync()
     {
         IEnumerable<Pet>? pets = await _httpClientPet.ListPetsAsync();
         System.Console.WriteLine("----- Lista de Pets importados no sistema -----");
@@ -21,10 +20,12 @@ internal class List: IComando
         {
             System.Console.WriteLine(pet);
         }
+
+        return Result.Ok();
     }
 
-    public async Task ExecutaAsync(string[] args)
+    public async Task<Result> ExecutaAsync(string[] args)
     {
-        await this.ListaDadosPetsDaAPIAsync();
+        return await this.ListaDadosPetsDaAPIAsync();
     }
 }

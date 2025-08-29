@@ -1,4 +1,5 @@
 ﻿using Alura.Adopet.Console.Util;
+using FluentResults;
 using System.Reflection;
 
 namespace Alura.Adopet.Console.Comandos;
@@ -13,10 +14,10 @@ public class Help: IComando
         Docs = DocumentacaoDoSistema.ToDicrionary(Assembly.GetExecutingAssembly());
     }
 
-    public Task ExecutaAsync(string[] args)
+    public Task<Result> ExecutaAsync(string[] args)
     {
         this.ShowHelp(argsHelp: args);
-        return Task.CompletedTask;
+        return Task.FromResult(Result.Ok());
     }
 
     private void ShowHelp(string[] argsHelp)
