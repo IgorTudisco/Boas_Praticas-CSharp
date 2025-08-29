@@ -26,3 +26,17 @@ internal interface IComando
  * Curso Design Patterns C# II. https://cursos.alura.com.br/course/design-patterns-2-dot-net
  * 
  */
+
+/*
+ * Link da biblioteca FluentResults:
+ * 
+ *  The Operation Result Pattern — A Simple Guide https://medium.com/@cummingsi1993/the-operation-result-pattern-a-simple-guide-fe10ff959080
+ *  Result Object Pattern https://wiki.c2.com/?ResultObjectPattern
+ *  My take on the Result class in C# https://josef.codes/my-take-on-the-result-class-in-c-sharp/
+ *  Documentação do tipo ViewResult https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.viewresult?view=aspnetcore-9.0
+ *  Documentação do tipo NotFoundResult https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.notfoundresult?view=aspnetcore-9.0
+ *  Documentação do tipo UnauthorizedResult https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.unauthorizedresult?view=aspnetcore-9.0
+ *  Documentação do tipo OkObjectResult https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.okobjectresult?view=aspnetcore-9.0
+ *  Biblioteca FluentResults https://github.com/altmann/FluentResults
+ *  
+ */
