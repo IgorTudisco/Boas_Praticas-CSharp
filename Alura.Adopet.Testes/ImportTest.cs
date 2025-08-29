@@ -71,5 +71,9 @@ public class ImportTest
         //Assert
         Assert.True(resultado.IsSuccess);
 
+        var sucesso = (SuccessWhithPets) resultado.Successes[0];
+
+        Assert.Equal("Lima", sucesso.Data.First().Nome);
+
     }
 }
