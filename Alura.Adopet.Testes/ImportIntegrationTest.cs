@@ -23,7 +23,7 @@ public class ImportIntegrationTest
         var import = new Import(httpClientPet, leitorDeArquivo.Object);
         string[] args = { "import", "lista.csv" };
         //Act
-        await import.ExecutaAsync(args);
+        await import.ExecutaAsync();
         //Assert 
         var listaPet = await httpClientPet.ListPetsAsync();
         Assert.NotNull(listaPet);

@@ -3,27 +3,33 @@ using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Console.Comandos;
 
-internal class ComandosDoSistema
+internal static class ComandosDoSistema
 {
-    private readonly HttpClientPet _httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().GetHttpClient());
-    private readonly Dictionary<string, IComando> comandosDoSistema;
-    // private readonly LeitorDeArquivo _leitorDeArquivo = new LeitorDeArquivo(caminhoDoArquivo: args[1]); // Erro, pois o args[1] não está disponível aqui
-    private readonly LeitorDeArquivo _leitorDeArquivo = new LeitorDeArquivo();
-
-    public ComandosDoSistema()
+    public static IComando? CriarComando(string[] argumentos)
     {
-        comandosDoSistema = new Dictionary<string, IComando>
+        var comando = argumentos[0];
+        switch (comando)
         {
-            //{"help", new Help(comando: args[]) }, // Erro, pois o args[1] não está disponível aqui
-            {"help", new Help() },
-            {"import", new Import(_httpClientPet, _leitorDeArquivo) },
-            {"list", new List(_httpClientPet) },
-            {"show",new Show(_leitorDeArquivo) },
-        };
+            case "import":
+                var httpClientPet = new HttpClientPet(new AdopetAPIClientFactory().GetHttpClient());
+                // LeitorDeArquivo _leitorDeArquivo = new LeitorDeArquivo(caminhoDoArquivo: args[1]); // Erro, pois o args[1] não está disponível aqui
+                LeitorDeArquivo leitorDeArquivo = new LeitorDeArquivo();
+                return new Import(httpClientPet, leitorDeArquivo);
+            case "list":
+                var httpClientPetList = new HttpClientPet(new AdopetAPIClientFactory().GetHttpClient());
+                return new List(httpClientPetList);
+            case "show":
+                // LeitorDeArquivo _leitorDeArquivo = new LeitorDeArquivo(caminhoDoArquivo: args[1]); // Erro, pois o args[1] não está disponível aqui
+                LeitorDeArquivo leitorDeArquivos = new LeitorDeArquivo();
+                return new Show(leitorDeArquivos);
+            case "help":
+                //return new Help(comando: args[]) // Erro, pois o args[1] não está disponível aqui
+                return new Help();
+            default: return null;
+        }
     }
-
-    public IComando? this[string key] => comandosDoSistema.ContainsKey(key) ? comandosDoSistema[key] : null;
 }
+
 
 /*
  * Padrão Command em bibliotecas famosas:

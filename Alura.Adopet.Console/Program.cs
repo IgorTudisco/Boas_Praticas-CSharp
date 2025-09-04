@@ -2,13 +2,11 @@
 using Alura.Adopet.Console.UI;
 using FluentResults;
 
-ComandosDoSistema comandos = new();
+IComando? comando = ComandosDoSistema.CriarComando(args);
 
-string comando = args[0].Trim();
-IComando? comandoASerExecutado = comandos[comando];
-if (comandoASerExecutado is not null)
+if (comando is not null)
 {
-    var result = await comandoASerExecutado.ExecutaAsync();
+    var result = await comando.ExecutaAsync();
     ConsoleUI.ExibirResultado(result);
 } 
 else ConsoleUI.ExibirResultado(Result.Fail("Comando inválido!"));
