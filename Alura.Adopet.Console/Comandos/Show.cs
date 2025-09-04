@@ -14,11 +14,11 @@ namespace Alura.Adopet.Console.Comandos
             this.leitor = leitor;
         }
 
-        public Task<Result> ExecutaAsync(string[] args)
+        public Task<Result> ExecutaAsync()
         {
             try
             { 
-                this.ExibeConteudoArquivo(caminhoDoArquivoASerExibido: args[1]);
+                this.ExibeConteudoArquivo();
                 return Task.FromResult(Result.Ok());
             }
             catch (Exception exception)
@@ -27,7 +27,7 @@ namespace Alura.Adopet.Console.Comandos
             }
         }
 
-        private void ExibeConteudoArquivo(string caminhoDoArquivoASerExibido)
+        private void ExibeConteudoArquivo()
         {
             var listaDepets = leitor.RealizaLeitura();
             Result.Ok().WithSuccess(new SuccessWhithPets(listaDepets!, "Importação realizada com sucesso!"));

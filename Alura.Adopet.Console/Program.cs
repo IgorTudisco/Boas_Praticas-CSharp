@@ -8,7 +8,7 @@ string comando = args[0].Trim();
 IComando? comandoASerExecutado = comandos[comando];
 if (comandoASerExecutado is not null)
 {
-    var result = await comandoASerExecutado.ExecutaAsync(args);
+    var result = await comandoASerExecutado.ExecutaAsync();
     ConsoleUI.ExibirResultado(result);
 } 
 else ConsoleUI.ExibirResultado(Result.Fail("Comando inválido!"));

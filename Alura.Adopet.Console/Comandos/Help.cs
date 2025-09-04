@@ -8,17 +8,19 @@ namespace Alura.Adopet.Console.Comandos;
 public class Help: IComando
 {
     private readonly Dictionary<string, DocComando> Docs;
+    private string? _comando;
 
-    public Help()
+    public Help(string? comando = null)
     {
         Docs = DocumentacaoDoSistema.ToDicrionary(Assembly.GetExecutingAssembly());
+        _comando = comando;
     }
 
-    public Task<Result> ExecutaAsync(string[] args)
+    public Task<Result> ExecutaAsync()
     {
         try
         {
-            var success = this.GeneratesHelp(argsHelp: args);
+            var success = this.GerarDocumentacao();
             return Task.FromResult(Result.Ok().WithSuccess(new SuccessWhithDocs(success)));
         }
         catch (Exception exception)
@@ -27,12 +29,12 @@ public class Help: IComando
         }        
     }
 
-    private IEnumerable<string> GeneratesHelp(string[] argsHelp)
+    private IEnumerable<string> GerarDocumentacao()
     {
         List<string> resultado = new();
         System.Console.WriteLine("Lista de comandos.");
         // se não passou mais nenhum argumento mostra help de todos os comandos
-        if (argsHelp!.Length == 1)
+        if (_comando is null)
         {            
             foreach (var doc in Docs.Values)
             {
@@ -40,18 +42,17 @@ public class Help: IComando
             }
         }
         // exibe o help daquele comando específico
-        else if (argsHelp.Length == 2)
+        else
         {
-            string comandoASerExibido = argsHelp[1];
 
-            if (!Docs.ContainsKey(comandoASerExibido))
+            if (!Docs.ContainsKey(_comando))
             {
-                var comando = Docs[comandoASerExibido];
+                var comando = Docs[_comando];
                 resultado.Add(comando.Documentacao);
             }
             else
             {
-                resultado.Add($"Comando {comandoASerExibido} não encontrado!");
+                resultado.Add($"Comando {_comando} não encontrado!");
             }
 
         }

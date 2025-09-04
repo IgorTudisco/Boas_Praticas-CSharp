@@ -26,7 +26,7 @@ internal class List: IComando
         }
     }
 
-    public async Task<Result> ExecutaAsync(string[] args)
+    public async Task<Result> ExecutaAsync()
     {
         return await this.ListaDadosPetsDaAPIAsync();
     }

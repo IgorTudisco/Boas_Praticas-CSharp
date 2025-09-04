@@ -19,12 +19,12 @@ public class Import : IComando
         _leitorDeArquivo = leitorDeArquivo;
     }
 
-    public async Task<Result> ExecutaAsync(string[] args)
+    public async Task<Result> ExecutaAsync()
     {
-        return await this.ImportacaoDeArquivoPetAsyc(caminhoDoArquivoDeImportacao: args[1]);
+        return await this.ImportacaoDeArquivoPetAsyc();
     }
 
-    private async Task<Result> ImportacaoDeArquivoPetAsyc(string caminhoDoArquivoDeImportacao)
+    private async Task<Result> ImportacaoDeArquivoPetAsyc()
     {
         List<Pet> listaDePet = _leitorDeArquivo.RealizaLeitura()!;
         foreach (var pet in listaDePet)

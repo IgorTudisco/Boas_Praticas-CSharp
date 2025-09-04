@@ -14,6 +14,7 @@ internal class ComandosDoSistema
     {
         comandosDoSistema = new Dictionary<string, IComando>
         {
+            //{"help", new Help(comando: args[]) }, // Erro, pois o args[1] não está disponível aqui
             {"help", new Help() },
             {"import", new Import(_httpClientPet, _leitorDeArquivo) },
             {"list", new List(_httpClientPet) },

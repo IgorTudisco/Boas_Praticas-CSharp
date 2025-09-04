@@ -24,7 +24,7 @@ public class ImportTest
         string[] args = { "import", "lista.csv" };
             
         // Act
-        await import.ExecutaAsync(args);
+        await import.ExecutaAsync();
 
         // Assert
         httpClientPet.Verify(x => x.CreatePetAsync(It.IsAny<Pet>()), Times.Never);
@@ -47,7 +47,7 @@ public class ImportTest
         var import = new Import(httpClientPet.Object, leitor.Object);
 
         //Act+Assert
-        await Assert.ThrowsAnyAsync<Exception>(() => import.ExecutaAsync(args));
+        await Assert.ThrowsAnyAsync<Exception>(() => import.ExecutaAsync());
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public class ImportTest
         string[] args = { "import", "lista.csv" };
 
         //Act
-        var resultado = await import.ExecutaAsync(args);
+        var resultado = await import.ExecutaAsync();
 
         //Assert
         Assert.True(resultado.IsSuccess);
