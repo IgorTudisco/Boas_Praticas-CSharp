@@ -39,3 +39,13 @@ internal static class FabricaDeComandos
  * MediatR - https://github.com/jbogard/MediatR
  *  
  */
+
+/*
+ * 
+ * Para saber mais sobre padrões de projeto GoF e do padrão Factory, consulte os seguintes materiais:
+ * 
+ * Design patterns: Breve introdução aos padrões de projeto https://www.alura.com.br/artigos/design-patterns-introducao-padroes-projeto
+ * Factory Method https://refactoring.guru/pt-br/design-patterns/factory-method
+ * Exemplo de implementação do padrão factory method https://github.com/alura-cursos/CalculadoraFactoryApp
+ * 
+ */
