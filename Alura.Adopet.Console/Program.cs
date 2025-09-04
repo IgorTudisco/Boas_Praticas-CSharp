@@ -2,7 +2,7 @@
 using Alura.Adopet.Console.UI;
 using FluentResults;
 
-IComando? comando = ComandosDoSistema.CriarComando(args);
+IComando? comando = FabricaDeComandos.CriarComando(args);
 
 if (comando is not null)
 {
