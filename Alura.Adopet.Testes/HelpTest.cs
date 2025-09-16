@@ -17,6 +17,7 @@ public class HelpTest
         Assert.True(resultado.IsFailed);
     }
 
+    // Theory para testar vários comandos existentes, ou seja, os comando que possuem documentação
     [Theory]
     [InlineData("help")]
     [InlineData("show")]

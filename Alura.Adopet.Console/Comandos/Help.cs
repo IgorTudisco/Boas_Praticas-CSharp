@@ -19,7 +19,7 @@ public class Help: IComando
     public Task<Result> ExecutaAsync()
     {
         try
-        {
+        {            
             var success = this.GerarDocumentacao();
             return Task.FromResult(Result.Ok().WithSuccess(new SuccessWhithDocs(success)));
         }
@@ -53,6 +53,7 @@ public class Help: IComando
             else
             {
                 resultado.Add($"Comando {_comando} não encontrado!");
+                throw new ArgumentException();
             }
 
         }
