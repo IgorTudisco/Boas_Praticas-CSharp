@@ -40,7 +40,7 @@ public class FabricaDeComandosTest
     public void DadoUmArrayDeArgumentosVazioDeveRetornarNulo()
     {
         //Arrange
-        string[] args = { };
+        string[] args = Array.Empty<string>();
         //Act
         var comando = FabricaDeComandos.CriarComando(args);
         //Assert
