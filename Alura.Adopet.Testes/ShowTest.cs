@@ -16,7 +16,7 @@ public class ShowTest
                           "Lima", TipoPet.Cachorro);
         listaDePet.Add(pet);
         var leitor = LeitorDeArquivosMockBuilder.CriaMock(listaDePet);
-        leitor.Setup(s => s.RealizaLeitura());
+        leitor.Setup(_ => _.RealizaLeitura());
 
         var show = new Show(leitor.Object);
 
@@ -26,7 +26,12 @@ public class ShowTest
         //Assert
         Assert.NotNull(resultado);
         var sucesso = (SuccessWhithPets)resultado.Successes[0];
-        Assert.Equal("Importação realizada com sucesso!",
+        Assert.Equal("Exibição do arquivo realizada com sucesso!",
             sucesso.Message);
     }
 }
+
+
+/*
+ * Dúvidas: https://cursos.alura.com.br/forum/topico-erro-no-teste-do-show-531099?b2cUser=true&hasAccessMGM=true
+ */
