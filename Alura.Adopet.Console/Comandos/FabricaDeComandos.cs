@@ -3,7 +3,7 @@ using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Console.Comandos;
 
-internal static class FabricaDeComandos
+public static class FabricaDeComandos
 {
     public static IComando? CriarComando(string[] argumentos)
     {
